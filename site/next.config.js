@@ -11,11 +11,20 @@ const isVendure = provider === '@vercel/commerce-vendure'
 
 module.exports = withCommerceConfig({
   commerce,
-  i18n: {
-    locales: ['en-US', 'es'],
-    defaultLocale: 'en-US',
-  },
   assetPrefix:'webapp',
+images: {
+    loader: "custom",
+    nextImageExportOptimizer: {
+      imageFolderPath: "public/assets",
+      exportFolderPath: "out",
+      imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+      deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+      quality: 75,
+    },
+  },
+  env: {
+    storePicturesInWEBP: true,
+  },
   rewrites() {
     return [
       (isBC || isShopify || isSwell || isVendure || isSaleor) && {
@@ -38,6 +47,7 @@ module.exports = withCommerceConfig({
     ].filter(Boolean)
   },
 })
+
 
 
 

@@ -3,7 +3,8 @@ import cn from 'clsx'
 import Link from 'next/link'
 import type { Product } from '@commerce/types/product'
 import s from './ProductCard.module.css'
-import Image, { ImageProps } from 'next/image'
+import ExportedImage from "next-image-export-optimizer";
+import { ExportedImageProps } from "next-image-export-optimizer"
 import WishlistButton from '@components/wishlist/WishlistButton'
 import usePrice from '@framework/product/use-price'
 import ProductTag from '../ProductTag'
@@ -12,7 +13,7 @@ interface Props {
   className?: string
   product: Product
   noNameTag?: boolean
-  imgProps?: Omit<ImageProps, 'src' | 'layout' | 'placeholder' | 'blurDataURL'>
+  imgProps?: Omit<ExportedImageProps, 'src' | 'layout' | 'placeholder' | 'blurDataURL'>
   variant?: 'default' | 'slim' | 'simple'
 }
 
@@ -47,7 +48,7 @@ const ProductCard: FC<Props> = ({
             </div>
             {product?.images && (
               <div>
-                <Image
+                <ExportedImage
                   quality="85"
                   src={product.images[0]?.url || placeholderImg}
                   alt={product.name || 'Product Image'}
@@ -83,7 +84,7 @@ const ProductCard: FC<Props> = ({
             <div className={s.imageContainer}>
               {product?.images && (
                 <div>
-                  <Image
+                  <ExportedImage
                     alt={product.name || 'Product Image'}
                     className={s.productImage}
                     src={product.images[0]?.url || placeholderImg}
@@ -115,7 +116,7 @@ const ProductCard: FC<Props> = ({
             <div className={s.imageContainer}>
               {product?.images && (
                 <div>
-                  <Image
+                  <ExportedImage
                     alt={product.name || 'Product Image'}
                     className={s.productImage}
                     src={product.images[0]?.url || placeholderImg}

@@ -61,7 +61,7 @@ export async function getStaticPaths({ locales }: GetStaticPathsContext) {
           return arr
         }, [])
       : products.map((product: any) => `/product${product.path}`),
-    fallback: 'blocking',
+    fallback: false,
   }
 }
 
