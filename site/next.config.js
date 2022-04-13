@@ -7,11 +7,12 @@ const isShopify = provider === '@vercel/commerce-shopify'
 const isSaleor = provider === '@vercel/commerce-saleor'
 const isSwell = provider === '@vercel/commerce-swell'
 const isVendure = provider === '@vercel/commerce-vendure'
+const debug = process.env.NODE_ENV !== 'production'
 
 
 module.exports = withCommerceConfig({
   commerce,
-  assetPrefix:'webapp',
+  assetPrefix: !debug ? '/ohmyflora.github.io/webapp/' : '',
 images: {
     loader: "custom",
     nextImageExportOptimizer: {
